@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Foo Switcher</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<h1>Hi, I am the thing that toggles <code>foo</code>.</h1>
+
+<ion-button (click)="toggleFoo()">Turn  <code>foo</code>  {{ (foo) ? 'off' : 'on' }}.</ion-button>
+</ion-content>
