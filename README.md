@@ -15,3 +15,9 @@ The important bit of the workaround is in `src/app/home/home.page.ts` on line 22
     npm i
 
     ionic serve
+
+To build for Android and iOS, use the native IDEs, easily accessed by Capacitor shortcuts:
+
+    npx cap open android
+
+    npx cap open ios
