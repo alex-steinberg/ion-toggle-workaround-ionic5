@@ -1,0 +1,8 @@
+{
+  "appId": "za.ca.steinrock.iontoggle",
+  "appName": "ion-toggle-fix-ionic5",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

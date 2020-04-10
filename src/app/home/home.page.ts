@@ -10,6 +10,7 @@ import { ModalPage } from '../modal/modal.page';
 export class HomePage implements OnInit {
   foo = false;
   fooBeforeToggle = false;
+  respondToChange = true;
   constructor(
     private modalCtrl: ModalController,
     private alertCtrl: AlertController
@@ -19,7 +20,7 @@ export class HomePage implements OnInit {
   }
   handleChange(ev): void {
     // vvv THE WORKAROUND vvv
-    if (ev.explicitOriginalTarget.nodeName === "BUTTON") {
+    if (this.respondToChange) {
       this.confirmToggle(this.fooBeforeToggle)
     }
     // ^^^ THE WORKAROUND ^^^
@@ -33,7 +34,7 @@ export class HomePage implements OnInit {
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-            this.foo = on;
+            this.updateFoo(on);
           }
         },
         {
@@ -57,10 +58,16 @@ export class HomePage implements OnInit {
     modal.onDidDismiss().then((result) => {
       console.log('modal result: ', result);
       if (result.data && result.data.hasOwnProperty("foo")) {
-        this.foo = this.fooBeforeToggle = result.data.foo
+        this.fooBeforeToggle = result.data.foo
+        this.updateFoo(result.data.foo);
       } else {
-        this.foo = this.fooBeforeToggle
+        this.updateFoo(this.fooBeforeToggle);
       }
     })
+  }
+  private updateFoo(newFoo: boolean): void {
+    this.respondToChange = false;
+    this.foo = newFoo;
+    setTimeout(() => (this.respondToChange = true), 0);
   }
 }
